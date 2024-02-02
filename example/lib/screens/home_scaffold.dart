@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
 
-import 'package:package_template/package_template.dart';
+import 'package:ui_animated_scale_flutter/ui_animated_scale_flutter.dart';
 
 class HomeScaffold extends StatelessWidget {
   const HomeScaffold({super.key});
@@ -18,22 +18,40 @@ class HomeScaffold extends StatelessWidget {
   }
 
   Widget homeWidget(BuildContext context) {
-    //TODO: Replace with your own code
-    // ignore: non_constant_identifier_names
-    final PackageTemplate package_template = PackageTemplate();
-    debugPrint('$package_template');
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            width: 200,
-            height: 200,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Assets.images.ltmm1024x1024.image(),
+          UIAnimatedScaleWidget(
+            child: SizedBox(
+              width: 200,
+              height: 200,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Assets.images.ltmm1024x1024.image(),
+              ),
             ),
           ),
+          const SizedBox(height: 20),
+          const Text(
+            'Tap on the image to see the animation.',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 20),
+          UIAnimatedScaleWidget(
+            onTapDown: (cubit, details) {
+              if (cubit.state == AnimatedScaleState.normal) {
+                cubit.compress();
+              } else {
+                cubit.expand();
+              }
+            },
+            onTapUp: null,
+            child: const Text(
+              'Tap Me for State!',
+              style: TextStyle(fontSize: 20),
+            ),
+          )
         ],
       ),
     );

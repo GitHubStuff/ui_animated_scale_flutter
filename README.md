@@ -1,8 +1,7 @@
 # SETUP
 
-- Find/Replace `package_template` to name of the name of the package (ex: `flutter_rocks`)
-- Addess the *TODO:* in the **/example** folder by adding code from the package
-- If needed/wanted follow the instructions in the **/example/README.md** to have the example app more reflective of your package and show off features of widget packages.
+Wrapper for a widget that allow the child to be perform a scale transform,
+or use as 'animated button'
 
 <!--
 The comments below are from the Flutter/Dart package generation. Feel free to use or ignore
@@ -21,29 +20,63 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Allows a widget to be wrapped and recieve callbacks on tap up/down, or be used as an animated button
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+in *pubspec.yaml* file:
+
+```dart
+dev_dependencies:
+  ui_animated_scale_flutter:
+    git: https://github.com/GitHubStuff/ui_animated_scale_flutter.git
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Full use example in **/example** folder
 
 ```dart
-const like = 'sample';
+UIAnimatedScaleWidget(
+            onTapDown: (cubit, details) {
+              if (cubit.state == AnimatedScaleState.normal) {
+                cubit.compress();
+              } else {
+                cubit.expand();
+              }
+            },
+            onTapUp: null,
+            child: const Text(
+              'Tap Me for State!',
+              style: TextStyle(fontSize: 20),
+            ),
+          )
 ```
 
-## Additional information
+*NOTE* If no callbacks for onTap Up/Down are provided, the widget does an animated scale {mimics a button press}
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Widget Definition
+
+```dart
+class UIAnimatedScaleWidget extends StatefulWidget {
+  final Widget child;
+  final Function(AnimatedScaleCubit, TapDownDetails)? onTapDown;
+  final Function(AnimatedScaleCubit, TapUpDetails)? onTapUp;
+
+  const UIAnimatedScaleWidget({
+    super.key,
+    required this.child,
+    this.onTapDown,
+    this.onTapUp,
+  });
+
+  @override
+  State<UIAnimatedScaleWidget> createState() => _UIAnimatedScaleWidgetState();
+}
+```
+
+## Finally
+
+Be kind to each other
