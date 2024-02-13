@@ -1,7 +1,6 @@
 # SETUP
 
-Wrapper for a widget that allow the child to be perform a scale transform,
-or use as 'animated button'
+Wrapper for a widget that allow the child to be perform a scale transform, or use as 'animated button'. The scaling happens over a *Duration*, and transforms from *boundry* of 0.0 to 1.0.
 
 <!--
 The comments below are from the Flutter/Dart package generation. Feel free to use or ignore
@@ -19,10 +18,6 @@ For general information about developing packages, see the Dart guide for
 and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
-
-## Features
-
-Allows a widget to be wrapped and recieve callbacks on tap up/down, or be used as an animated button
 
 ## Getting started
 
@@ -57,23 +52,47 @@ UIAnimatedScaleWidget(
 
 *NOTE* If no callbacks for onTap Up/Down are provided, the widget does an animated scale {mimics a button press}
 
+## Haptics
+
+There is support for Haptic feed back using:
+
+```dart
+import 'package:flutter/services.dart';
+```
+
+and an enum to set the type:
+
+```dart
+enum HapticFeedbackEnum {
+  heavyImpact,
+  lightImpact,
+  mediumImpact,
+  none,
+  selectionClick,
+  selectionVibrate;
+}
+```
+
 ## Widget Definition
 
 ```dart
 class UIAnimatedScaleWidget extends StatefulWidget {
-  final Widget child;
+  final double upperBoundTransform;
+  final Duration animationDuration;
   final Function(AnimatedScaleCubit, TapDownDetails)? onTapDown;
   final Function(AnimatedScaleCubit, TapUpDetails)? onTapUp;
+  final HapticFeedbackEnum hapticFeedback;
+  final Widget child;
 
   const UIAnimatedScaleWidget({
     super.key,
-    required this.child,
+    this.animationDuration = const Duration(milliseconds: 200),
+    this.hapticFeedback = HapticFeedbackEnum.none,
     this.onTapDown,
     this.onTapUp,
+    this.upperBoundTransform = 0.1,
+    required this.child,
   });
-
-  @override
-  State<UIAnimatedScaleWidget> createState() => _UIAnimatedScaleWidgetState();
 }
 ```
 

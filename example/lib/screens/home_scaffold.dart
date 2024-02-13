@@ -23,13 +23,30 @@ class HomeScaffold extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           UIAnimatedScaleWidget(
+            hapticFeedback: HapticFeedbackEnum.heavyImpact,
             child: SizedBox(
-              width: 200,
-              height: 200,
+              width: 125,
+              height: 125,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Assets.images.ltmm1024x1024.image(),
               ),
+            ),
+          ),
+          UIAnimatedScaleWidget(
+            animationDuration: const Duration(milliseconds: 500),
+            hapticFeedback: HapticFeedbackEnum.heavyImpact,
+            onTapDown: (cubit, details) {
+              if (cubit.state == AnimatedScaleState.normal) {
+                cubit.compress();
+              } else {
+                cubit.expand();
+              }
+            },
+            upperBoundTransform: 0.85,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Assets.images.ltmm1024x1024.image(),
             ),
           ),
           const SizedBox(height: 20),

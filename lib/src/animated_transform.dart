@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'animated_scale_cubit.dart';
 
 class AnimatedTransform extends AnimatedWidget {
   final AnimationController controller;

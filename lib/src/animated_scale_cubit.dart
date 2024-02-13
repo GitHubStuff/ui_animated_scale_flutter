@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'animated_transform.dart';
+part 'animated_transform.dart';
 
 enum AnimatedScaleState {
   compress,
@@ -52,7 +52,7 @@ class AnimatedScaleCubit extends Cubit<AnimatedScaleState> {
     emit(AnimatedScaleState.normal);
   }
 
-  void reset() {
+  void normal() {
     if (state == AnimatedScaleState.normal) return;
     _controller.reset();
     emit(AnimatedScaleState.normal);
