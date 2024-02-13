@@ -1,6 +1,6 @@
 name: ui_animated_scale_flutter
 description: "A widget to animate the scale of a widget in Flutter using taps."
-version: 0.0.1+0
+version: 0.0.1+1
 home_page: http://www.icodeforyou.com
 publish_to: none # Remove this line if you wish to publish to pub.dev
 
