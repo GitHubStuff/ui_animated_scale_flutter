@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:ui_haptics_flutter/ui_haptics_flutter.dart';
 
 import '../gen/assets.gen.dart';
 

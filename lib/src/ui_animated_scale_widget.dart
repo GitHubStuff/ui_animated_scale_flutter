@@ -1,34 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/services.dart';
-
+import 'package:ui_haptics_flutter/ui_haptics_flutter.dart';
 import 'animated_scale_cubit.dart';
-
-enum HapticFeedbackEnum {
-  heavyImpact,
-  lightImpact,
-  mediumImpact,
-  none,
-  selectionClick,
-  selectionVibrate;
-
-  Future<void> get hapticFeedbackEnum {
-    switch (this) {
-      case HapticFeedbackEnum.heavyImpact:
-        return HapticFeedback.heavyImpact();
-      case HapticFeedbackEnum.lightImpact:
-        return HapticFeedback.lightImpact();
-      case HapticFeedbackEnum.mediumImpact:
-        return HapticFeedback.mediumImpact();
-      case HapticFeedbackEnum.selectionClick:
-        return HapticFeedback.selectionClick();
-      case HapticFeedbackEnum.selectionVibrate:
-        return HapticFeedback.vibrate();
-      case HapticFeedbackEnum.none:
-        return Future<void>.value();
-    }
-  }
-}
 
 class UIAnimatedScaleWidget extends StatefulWidget {
   final double upperBoundTransform;
@@ -74,7 +47,7 @@ class _UIAnimatedScaleWidgetState extends State<UIAnimatedScaleWidget>
       builder: (context, state) {
         return GestureDetector(
           onTapDown: (TapDownDetails details) async {
-            await widget.hapticFeedback.hapticFeedbackEnum;
+            await widget.hapticFeedback.haptic;
             if (widget.onTapDown == null) animatedScaleCubit.compress();
             widget.onTapDown?.call(animatedScaleCubit, details);
           },

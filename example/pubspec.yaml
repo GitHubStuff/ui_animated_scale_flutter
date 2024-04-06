@@ -17,6 +17,8 @@ dependencies:
   flutter_modular: ^6.3.2 # Smart project structure with dependency injection and route management
   ui_animated_scale_flutter:
     path: ../../ui_animated_scale_flutter
+  ui_haptics_flutter:
+    git: https://github.com/GitHubStuff/ui_haptics_flutter.git
 
 # dart run build_runner build -d
 dev_dependencies:
