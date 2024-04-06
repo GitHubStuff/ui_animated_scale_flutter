@@ -30,7 +30,7 @@ class HomeScaffold extends StatelessWidget {
               height: 125,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Assets.images.ltmm1024x1024.image(),
+                child: Assets.images.scale1024.image(),
               ),
             ),
           ),
@@ -47,7 +47,7 @@ class HomeScaffold extends StatelessWidget {
             upperBoundTransform: 0.85,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Assets.images.ltmm1024x1024.image(),
+              child: Assets.images.scale1024.image(),
             ),
           ),
           const SizedBox(height: 20),
